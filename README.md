@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Install Nushell:
+Install [Nushell](https://www.nushell.sh/book/installation.html#pre-built-binaries):
 
 ```bash
 cargo install nushell
