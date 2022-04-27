@@ -21,7 +21,7 @@ def main [...args] {
                 echo "you should clone git repo first"
                 echo "clone it into explorer-git dir, please"
                 exit 1
-                }
+            }
                 
             echo "building explorer..."
             cd explorer-git
@@ -29,7 +29,7 @@ def main [...args] {
             cd ../
 
             mkdir explorer
-            cp explorer-git/target/release/iroha2_web_explorer ./explorer/
+            cp explorer-git/target/release/iroha2_explorer_web ./explorer/
 
             echo "explorer is built. also installing bunyan"
             cargo install bunyan --root ./tmp
@@ -38,15 +38,19 @@ def main [...args] {
         cp configs/iroha_config.json iroha/config.json
         cp configs/iroha_genesis.json iroha/genesis.json
         cp configs/client_config.json explorer/client_config.json
+        echo "configs are copied"
     } else if $command == "run" {
         let what = $args.1
         if $what == "iroha" {
             cd iroha
-            ./iroha --submit-ge/target
-            nesis
+            ./iroha --submit-genesis
         } else if $what == "explorer" {
             cd explorer
-            ./iroha2_explorer_web --dev-actor | ../tmp/bin/bunyan
+            ./iroha2_explorer_web --dev-actor
+        } else if $what == "both" {
+            [iroha explorer] | par-each { |it|
+                nu ./help.nu run $it
+            }
         }
     } else if $command == "help" {
         echo "
@@ -69,15 +73,11 @@ def main [...args] {
 
             <script> config
 
-        Now everything is ready to be run. Firstly start Iroha:
+        Now everything is ready to be run. You can run both in parallel:
         
-            <script> run iroha
+            <script> run both
 
-        And in parallel start explorer:
-
-            <script> run explorer
-
-        Checkout http://localhost:4000 !
+        Check out http://localhost:4000 !
         "
     }
 
