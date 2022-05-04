@@ -21,8 +21,7 @@
     "BLOCK_STORE_PATH": "./blocks"
   },
   "LOGGER": {
-    "MAX_LOG_LEVEL": "INFO",
-    "TERMINAL_COLORS": false
+    "MAX_LOG_LEVEL": "INFO"
   },
   "BLOCK_SYNC": {
     "GOSSIP_PERIOD_MS": 10000,

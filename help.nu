@@ -8,14 +8,7 @@ def main [...args] {
     let command = $args.0
     if $command == "install" {
         let what = $args.1
-        if $what == "iroha" {
-            echo "installing iroha..."
-            cargo install --git $iroha_git --rev $iroha_rev --root ./tmp iroha
-            mkdir iroha
-            cp ./tmp/bin/iroha ./iroha/
-            echo "done"
-        } else if $what == "explorer" {
-            
+        if $what == "explorer" {
             # check if it is cloned
             if 'explorer-git' not-in (ls).name {
                 echo "you should clone git repo first"
@@ -33,6 +26,8 @@ def main [...args] {
 
             echo "explorer is built. also installing bunyan"
             cargo install bunyan --root ./tmp
+        } else {
+            echo "I dont know what do you mean"
         }
     } else if $command == "config" {
         cp configs/iroha_config.json iroha/config.json
@@ -43,7 +38,7 @@ def main [...args] {
         let what = $args.1
         if $what == "iroha" {
             cd iroha
-            ./iroha --submit-genesis
+            docker-compose up
         } else if $what == "explorer" {
             cd explorer
             ./iroha2_explorer_web --dev-actor
@@ -52,16 +47,15 @@ def main [...args] {
                 nu ./help.nu run $it
             }
         }
+    } else if $command == 'clean' {
+        echo 'cleaning iroha'
+        rm -r ./iroha/*
     } else if $command == "help" {
         echo "
         Hi!
         I am here to help you with explorer & iroha deployment
 
-        Firstly, install iroha:
-
-            <script> install iroha
-        
-        Then, install explorer:
+        Firstly, install explorer:
 
             # clone git repo
             git clone <explorer-repo> explorer-git
@@ -76,6 +70,11 @@ def main [...args] {
         Now everything is ready to be run. You can run both in parallel:
         
             <script> run both
+
+        Or separately:
+
+            <script> run iroha
+            <script> run explorer
 
         Check out http://localhost:4000 !
         "
