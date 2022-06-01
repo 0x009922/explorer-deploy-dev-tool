@@ -1,15 +1,13 @@
-# Explorer deploy helper tool
+# Explorer deploy assistant
 
 ## Prerequisites
 
-Install [Nushell](https://www.nushell.sh/book/installation.html#pre-built-binaries):
-
-```bash
-cargo install nushell
-```
+Install [Elixir](https://elixir-lang.org/install.html):
 
 ## Running
 
 ```bash
-nu ./help.nu help
+elixir ./assistant.exs
 ```
+
+It will print help message

@@ -1,4 +1,3 @@
-/tmp
-/explorer-git
-/iroha
-/explorer
+/.tmp-cargo
+/.iroha
+/.explorer
