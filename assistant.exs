@@ -69,7 +69,7 @@ case System.argv() do
         Util.cargo_install_from_git(
           "https://github.com/hyperledger/iroha.git",
           config.bin_iroha,
-          rev: "2ba9c8f73dabb5eda27a2a8dc66e44b7382e0405",
+          rev: "75da907f66d5270f407a50e06bc76cec41d3d409",
           root: config.cargo_root
         )
 
