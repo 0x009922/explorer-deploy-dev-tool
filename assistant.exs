@@ -87,7 +87,7 @@ case System.argv() do
         Util.cargo_install_from_git(
           "https://github.com/soramitsu/iroha2-block-explorer-backend.git",
           config.bin_explorer,
-          branch: "feat/new-web-methods",
+          branch: "master",
           root: config.cargo_root
         )
 
