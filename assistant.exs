@@ -134,7 +134,7 @@ case System.argv() do
         1. Install Iroha & Explorer:
 
           #{script} install iroha
-          #{script} install exporer
+          #{script} install explorer
 
 
         2. Copy configuration files:
